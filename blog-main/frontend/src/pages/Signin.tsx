@@ -1,3 +1,3 @@
 export const Signin = () => {
-  return <div>Blog</div>
+  return <div>Signin</div>
 }
