@@ -1,3 +1,9 @@
+import { Navbar } from "@/components/Navbar"
+
 export const Blog = () => {
-  return <div>Blog</div>
+  return (
+    <div>
+      <Navbar />
+    </div>
+  )
 }

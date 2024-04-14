@@ -17,7 +17,11 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
       <div className="flex justify-center">
         <div>
           <div className="px-20">
-            <div className="text-3xl font-extrabold">Create an account</div>
+            <div className="text-3xl font-extrabold">
+              {type === "signup"
+                ? "Create an account"
+                : "Login to your account"}
+            </div>
             <div className="text-slate-600 font-light mt-1">
               {type === "signin"
                 ? "Don't have an account?"
@@ -32,16 +36,18 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
           </div>
 
           <div>
-            <LabelledInput
-              label="Name"
-              placeholder="Ayush Ray"
-              onChange={(e) => {
-                setPostInputs({
-                  ...postInputs,
-                  name: e.target.value,
-                })
-              }}
-            />
+            {type === "signup" ? (
+              <LabelledInput
+                label="Name"
+                placeholder="Ayush Ray"
+                onChange={(e) => {
+                  setPostInputs({
+                    ...postInputs,
+                    name: e.target.value,
+                  })
+                }}
+              />
+            ) : null}
             <LabelledInput
               label="Username"
               placeholder="ayushrau@gmail.com"
@@ -71,6 +77,11 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
           >
             {type === "signin" ? "SIGN IN" : "SIGN UP"}
           </button>
+          {type === "signup" ? (
+            <div>
+              <GoogleButton />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
