@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { SignupInput } from "@100xdevs/medium-common"
 import { Button } from "./Button"
 import { GoogleButton } from "./GoogleButton"
+import { GithubButton } from "./GithubButton"
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
   const [postInputs, setPostInputs] = useState<SignupInput>({
@@ -60,6 +61,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
           </div>
           <Button />
           <GoogleButton />
+          <GithubButton />
         </div>
       </div>
     </div>
