@@ -1,3 +1,9 @@
+import { Signupcard } from "@/components/signupcard"
+
 export const Signup = () => {
-  return <div></div>
+  return (
+    <div>
+      <Signupcard />
+    </div>
+  )
 }
