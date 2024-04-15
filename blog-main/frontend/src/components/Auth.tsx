@@ -1,16 +1,34 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { SignupInput } from "@100xdevs/medium-common"
-import { Button } from "./Button"
+// import { Button } from "./Button"
+// import { GithubButton } from "./GithubButton"
 import { GoogleButton } from "./GoogleButton"
-import { GithubButton } from "./GithubButton"
+import axios from "axios"
+import { BACKEND_URL } from "../config"
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
+  const navigate = useNavigate()
+
   const [postInputs, setPostInputs] = useState<SignupInput>({
     name: "",
     username: "",
     password: "",
   })
+
+  async function sendRequest() {
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,
+        postInputs
+      )
+      const jwt = response.data
+      localStorage.setItem("toke", jwt)
+      navigate("/blogs")
+    } catch (e) {
+      // alert the user that request failed
+    }
+  }
 
   return (
     <div className="h-screen flex justify-center flex-col">
@@ -72,6 +90,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
           </div>
 
           <button
+            onClick={sendRequest}
             type="button"
             className="w-full text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-40 py-3 text-center me-2 mb-2 mt-10"
           >
